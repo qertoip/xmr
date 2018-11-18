@@ -10,6 +10,5 @@ bytes = "0.4.6"
 
 xmr-primitives = { path = "../primitives" }
 xmr-keys = { path = "../keys" }
-xmr-rct = { path = "../rct" }
 xmr-format = { path = "../format" }
 xmr-varint = { path = "../varint" }

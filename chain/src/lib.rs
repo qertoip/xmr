@@ -10,7 +10,6 @@ extern crate bytes;
 
 extern crate xmr_primitives as primitives;
 extern crate xmr_keys as keys;
-extern crate xmr_rct as rct;
 extern crate xmr_format as format;
 extern crate xmr_varint as varint;
 

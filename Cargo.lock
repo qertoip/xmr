@@ -769,7 +769,6 @@ dependencies = [
  "xmr-format 0.1.0",
  "xmr-keys 0.1.0",
  "xmr-primitives 0.1.0",
- "xmr-rct 0.1.0",
  "xmr-varint 0.1.0",
 ]
 
@@ -902,10 +901,6 @@ dependencies = [
  "xmr-crypto 0.1.0",
  "xmr-format 0.1.0",
 ]
-
-[[package]]
-name = "xmr-rct"
-version = "0.1.0"
 
 [[package]]
 name = "xmr-storage"

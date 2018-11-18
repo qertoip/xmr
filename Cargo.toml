@@ -29,7 +29,6 @@ members = [
     "portable-storage-utils",
     "portable-storage",
     "primitives",
-    "rct",
     "storage",
     "sync",
     "varint",

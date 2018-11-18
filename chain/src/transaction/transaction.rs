@@ -6,8 +6,10 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
+#[derive(Debug, Default, Clone)]
+pub struct RctSignature;
+
 use keys::{Signature, SIGNATURE_LENGTH};
-use rct::Signature as RctSignature;
 use transaction::TransactionPrefix;
 use primitives::H256;
 use format::{Deserialize, DeserializerStream, Error, Serialize, SerializerStream, from_binary, to_binary};
