@@ -228,7 +228,7 @@ impl<'de> MapAccess<'de> for MapDeserializer {
 pub mod tests {
     use super::*;
 
-    use portable_storage::{Section, StorageEntry};
+    use {Section, StorageEntry};
 
     #[derive(Deserialize)]
     struct TestVector0 {
