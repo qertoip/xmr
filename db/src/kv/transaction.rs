@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-use bytes::{BytesMut, Bytes, Buf, BufMut, IntoBuf, LittleEndian};
+use bytes::{BytesMut, Bytes, Buf, BufMut, IntoBuf};
 use primitives::H256;
 use chain::Block;
 use format::{to_binary, from_binary};
@@ -65,7 +65,7 @@ impl Value {
                 }
 
                 let mut buf = bytes.into_buf();
-                Value::BlockHeight(buf.get_u64::<LittleEndian>())
+                Value::BlockHeight(buf.get_u64_le())
             }
             Key::BlockId(_) => Value::BlockId(H256::from_bytes(&bytes)),
         }
@@ -169,12 +169,12 @@ impl<'a> From<&'a KeyValue> for RawKeyValue {
             KeyValue::Block(ref k, ref v) => (COL_BLOCKS, Bytes::from(k.as_bytes()), to_binary(v)),
             KeyValue::BlockHeight(ref k, ref v) => {
                 let mut buf = BytesMut::with_capacity(8);
-                buf.put_u64::<LittleEndian>(*v);
+                buf.put_u64_le(*v);
                 (COL_BLOCK_HEIGHTS, Bytes::from(k.as_bytes()), buf.freeze())
             }
             KeyValue::BlockId(ref k, ref v) => {
                 let mut buf = BytesMut::with_capacity(8);
-                buf.put_u64::<LittleEndian>(*k);
+                buf.put_u64_le(*k);
                 (COL_BLOCK_IDS, buf.freeze(), Bytes::from(v.as_bytes()))
             }
         };
@@ -201,7 +201,7 @@ impl<'a> From<&'a Key> for RawKey {
             Key::BlockHeight(ref k) => (COL_BLOCK_HEIGHTS, Bytes::from(k.as_bytes())),
             Key::BlockId(ref k) => {
                 let mut buf = BytesMut::with_capacity(8);
-                buf.put_u64::<LittleEndian>(*k);
+                buf.put_u64_le(*k);
                 (COL_BLOCK_IDS, buf.freeze())
             }
         };

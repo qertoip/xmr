@@ -26,7 +26,7 @@ use chain::transaction::Transaction;
 use chain::{Block, BlockHeader};
 use uuid::Uuid;
 use primitives::H256;
-use verification::{Difficulty, is_valid_proof_of_work};
+use verification::{proof_of_work_is_valid};
 
 pub const MAINNET_NETWORK_ID: [u8; 16] = [0x12, 0x30, 0xf1, 0x71, 0x61, 0x04, 0x41, 0x61, 0x17,
                                           0x31, 0x00, 0x82, 0x16, 0xa1, 0xa1, 0x10];
@@ -203,8 +203,7 @@ impl Network {
         trace!("genesis block hash - {:?}", bl.hash());
         trace!("genesis block id- {:?}", bl.id());
 
-        assert!(is_valid_proof_of_work(bl.hash(), Difficulty(1)),
-                "proof of work for genesis block isn't valid");
+        assert!(proof_of_work_is_valid(&bl.hash().as_bytes(), 1), "proof of work for genesis block isn't valid");
 
         bl
     }

@@ -15,7 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 use std::net;
-use bytes::{BytesMut, Buf, BufMut, IntoBuf, LittleEndian};
+use bytes::{BytesMut, Buf, BufMut, IntoBuf};
 
 use portable_storage_utils::stl::{StlElement, Error};
 
@@ -55,14 +55,14 @@ impl StlElement for Ipv4Address {
         let mut buf = v.into_buf();
 
         Ok(Ipv4Address {
-               ip: buf.get_u32::<LittleEndian>(),
-               port: buf.get_u16::<LittleEndian>(),
+               ip: buf.get_u32_le(),
+               port: buf.get_u16_le(),
            })
     }
 
     fn to_bytes(&self, buf: &mut BytesMut) {
         buf.reserve(Self::LENGTH);
-        buf.put_u32::<LittleEndian>(self.ip);
-        buf.put_u16::<LittleEndian>(self.port);
+        buf.put_u32_le(self.ip);
+        buf.put_u16_le(self.port);
     }
 }

@@ -6,8 +6,12 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-extern crate xmr_primitives as primitives;
+//#![allow(dead_code)]
+
+#[macro_use]
+extern crate lazy_static;
+extern crate uint;
 
 mod pow;
 
-pub use pow::{Difficulty, is_valid_proof_of_work};
+pub use pow::{proof_of_work_is_valid};

@@ -19,7 +19,7 @@ use std::collections::LinkedList;
 
 use sanakirja;
 use parking_lot::RwLock;
-use bytes::{Buf, IntoBuf, LittleEndian};
+use bytes::{Buf, IntoBuf};
 
 use chain::IndexedBlock;
 use format::to_binary;
@@ -70,7 +70,7 @@ impl<DB> BlockChainDatabase<DB>
             (Ok(None), Ok(None)) => None,
             (Ok(Some(height)), Ok(Some(id))) => {
                 let mut buf = height.into_buf();
-                let height = buf.get_u64::<LittleEndian>();
+                let height = buf.get_u64_le();
 
                 let id = H256::from_bytes(id);
 

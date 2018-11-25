@@ -7,7 +7,7 @@
 // except according to those terms.
 
 use primitives::{H256, H256_LENGTH};
-use bytes::{BytesMut, BufMut, Buf, IntoBuf, LittleEndian};
+use bytes::{BytesMut, BufMut, Buf, IntoBuf};
 
 #[derive(Debug, Clone, Fail)]
 pub enum Error {
@@ -34,11 +34,11 @@ impl StlElement for u64 {
             return Err(Error::InvalidLength(v.len()));
         }
 
-        Ok(v.into_buf().get_u64::<LittleEndian>())
+        Ok(v.into_buf().get_u64_le())
     }
 
     fn to_bytes(&self, buf: &mut BytesMut) {
-        buf.put_u64::<LittleEndian>(*self)
+        buf.put_u64_le(*self)
     }
 }
 

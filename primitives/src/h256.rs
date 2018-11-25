@@ -8,7 +8,7 @@
 
 use std::fmt::{self, Debug, Formatter};
 
-use bytes::{Buf, IntoBuf, LittleEndian};
+use bytes::{Buf, IntoBuf};
 use serde;
 
 use crypto::{fast_hash, slow_hash};
@@ -127,13 +127,19 @@ impl H256 {
         h
     }
 
+//    pub fn u128_components(&self) -> (u128, u128) {
+//        let mut buf = self.0.into_buf();
+//        let v1 = buf.get_u128_le();
+//        let v2 = buf.get_u128_le();
+//        (v1, v2)
+//    }
+
     pub fn u64_components(&self) -> (u64, u64, u64, u64) {
         let mut buf = self.0.into_buf();
-        let v1 = buf.get_u64::<LittleEndian>();
-        let v2 = buf.get_u64::<LittleEndian>();
-        let v3 = buf.get_u64::<LittleEndian>();
-        let v4 = buf.get_u64::<LittleEndian>();
-
+        let v1 = buf.get_u64_le();
+        let v2 = buf.get_u64_le();
+        let v3 = buf.get_u64_le();
+        let v4 = buf.get_u64_le();
         (v1, v2, v3, v4)
     }
 

@@ -22,7 +22,7 @@ extern crate failure_derive;
 use std::ops::Index;
 
 use linked_hash_map::LinkedHashMap;
-use bytes::{Buf, BufMut, BytesMut, LittleEndian};
+use bytes::{Buf, BufMut, BytesMut};
 
 pub mod ser;
 pub mod de;
@@ -103,15 +103,15 @@ impl StorageEntry {
         let entry = match serialize_type {
             SERIALIZE_TYPE_INT64 => {
                 ensure_eof!(buf, 8);
-                StorageEntry::I64(buf.get_i64::<LittleEndian>())
+                StorageEntry::I64(buf.get_i64_le())
             }
             SERIALIZE_TYPE_INT32 => {
                 ensure_eof!(buf, 4);
-                StorageEntry::I32(buf.get_i32::<LittleEndian>())
+                StorageEntry::I32(buf.get_i32_le())
             }
             SERIALIZE_TYPE_INT16 => {
                 ensure_eof!(buf, 2);
-                StorageEntry::I16(buf.get_i16::<LittleEndian>())
+                StorageEntry::I16(buf.get_i16_le())
             }
             SERIALIZE_TYPE_INT8 => {
                 ensure_eof!(buf, 1);
@@ -119,15 +119,15 @@ impl StorageEntry {
             }
             SERIALIZE_TYPE_UINT64 => {
                 ensure_eof!(buf, 8);
-                StorageEntry::U64(buf.get_u64::<LittleEndian>())
+                StorageEntry::U64(buf.get_u64_le())
             }
             SERIALIZE_TYPE_UINT32 => {
                 ensure_eof!(buf, 4);
-                StorageEntry::U32(buf.get_u32::<LittleEndian>())
+                StorageEntry::U32(buf.get_u32_le())
             }
             SERIALIZE_TYPE_UINT16 => {
                 ensure_eof!(buf, 2);
-                StorageEntry::U16(buf.get_u16::<LittleEndian>())
+                StorageEntry::U16(buf.get_u16_le())
             }
             SERIALIZE_TYPE_UINT8 => {
                 ensure_eof!(buf, 1);
@@ -135,7 +135,7 @@ impl StorageEntry {
             }
             SERIALIZE_TYPE_DOUBLE => {
                 ensure_eof!(buf, 8);
-                StorageEntry::Double(buf.get_f64::<LittleEndian>())
+                StorageEntry::Double(buf.get_f64_le())
             }
             SERIALIZE_TYPE_STRING => {
                 let b = read_buf::<B>(buf)?;
@@ -169,17 +169,17 @@ impl StorageEntry {
             StorageEntry::U64(ref v) => {
                 buf.reserve(9);
                 buf.put_u8(SERIALIZE_TYPE_UINT64);
-                buf.put_u64::<LittleEndian>(*v);
+                buf.put_u64_le(*v);
             }
             StorageEntry::U32(ref v) => {
                 buf.reserve(5);
                 buf.put_u8(SERIALIZE_TYPE_UINT32);
-                buf.put_u32::<LittleEndian>(*v);
+                buf.put_u32_le(*v);
             }
             StorageEntry::U16(ref v) => {
                 buf.reserve(3);
                 buf.put_u8(SERIALIZE_TYPE_UINT16);
-                buf.put_u16::<LittleEndian>(*v);
+                buf.put_u16_le(*v);
             }
             StorageEntry::U8(ref v) => {
                 buf.reserve(2);
@@ -189,17 +189,17 @@ impl StorageEntry {
             StorageEntry::I64(ref v) => {
                 buf.reserve(9);
                 buf.put_u8(SERIALIZE_TYPE_INT64);
-                buf.put_i64::<LittleEndian>(*v);
+                buf.put_i64_le(*v);
             }
             StorageEntry::I32(ref v) => {
                 buf.reserve(5);
                 buf.put_u8(SERIALIZE_TYPE_INT32);
-                buf.put_i32::<LittleEndian>(*v);
+                buf.put_i32_le(*v);
             }
             StorageEntry::I16(ref v) => {
                 buf.reserve(3);
                 buf.put_u8(SERIALIZE_TYPE_INT16);
-                buf.put_i16::<LittleEndian>(*v);
+                buf.put_i16_le(*v);
             }
             StorageEntry::I8(ref v) => {
                 buf.reserve(2);
@@ -209,7 +209,7 @@ impl StorageEntry {
             StorageEntry::Double(ref v) => {
                 buf.reserve(9);
                 buf.put_u8(SERIALIZE_TYPE_DOUBLE);
-                buf.put_f64::<LittleEndian>(*v);
+                buf.put_f64_le(*v);
             }
             StorageEntry::Bool(ref v) => {
                 buf.reserve(2);

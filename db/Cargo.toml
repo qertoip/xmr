@@ -11,8 +11,8 @@ include = ["LICENSE-GPL"]
 [dependencies]
 bytes = "0.4.6"
 parking_lot = "0.4"
-sanakirja = "0.8"
-rand = "0.4.2"
+sanakirja = "0.8.16"
+rand = "0.5.5"
 
 failure = "0.1.1"
 failure_derive = "0.1.1"

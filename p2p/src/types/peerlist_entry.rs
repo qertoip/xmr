@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-use bytes::{BytesMut, Buf, BufMut, LittleEndian, IntoBuf};
+use bytes::{BytesMut, Buf, BufMut, IntoBuf};
 use portable_storage_utils::stl::{StlElement, Error};
 use types::{Ipv4Address, PeerId};
 use std::cmp::{Eq, PartialEq};
@@ -46,8 +46,8 @@ impl StlElement for PeerlistEntry {
 
         let mut buf = (&v[Ipv4Address::LENGTH..]).into_buf();
 
-        let id = buf.get_u64::<LittleEndian>().into();
-        let last_seen = buf.get_i64::<LittleEndian>();
+        let id = buf.get_u64_le().into();
+        let last_seen = buf.get_i64_le();
 
         Ok(PeerlistEntry { adr, id, last_seen })
     }
@@ -56,7 +56,7 @@ impl StlElement for PeerlistEntry {
         buf.reserve(Self::LENGTH);
 
         self.adr.to_bytes(buf);
-        buf.put_u64::<LittleEndian>(self.id.into());
-        buf.put_i64::<LittleEndian>(self.last_seen);
+        buf.put_u64_le(self.id.into());
+        buf.put_i64_le(self.last_seen);
     }
 }
