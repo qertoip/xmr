@@ -18,14 +18,14 @@ use std::sync::Arc;
 
 use app_dirs::{AppDataType, app_dir};
 
-use chain::IndexedBlock;
-use db::BlockChainDatabase;
-use storage::SharedStore;
+use crate::chain::IndexedBlock;
+use crate::db::BlockChainDatabase;
+use crate::storage::SharedStore;
 
-use config::Config;
+use crate::config::Config;
 
 pub fn open_db() -> SharedStore {
-    use APP_INFO;
+    use crate::APP_INFO;
 
     let path =
         app_dir(AppDataType::UserData, &APP_INFO, "db").expect("couldn't get user data location");

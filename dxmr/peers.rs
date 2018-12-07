@@ -15,7 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 use std::net::{SocketAddr, ToSocketAddrs};
-use network::Network;
+use crate::network::Network;
 
 pub fn default_peers(network: Network) -> Vec<SocketAddr> {
     let addrs: &[&'static str] = match network {

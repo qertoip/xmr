@@ -18,10 +18,10 @@ use std::net::SocketAddr;
 
 use clap::ArgMatches;
 use failure::Error;
-use network::Network;
-use peers::default_peers;
-use storage::SharedStore;
-use utils;
+use crate::network::Network;
+use crate::peers::default_peers;
+use crate::storage::SharedStore;
+use crate::utils;
 
 pub struct Config {
     pub network: Network,
