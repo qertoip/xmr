@@ -14,4 +14,4 @@ extern crate uint;
 
 mod pow_verification;
 
-pub use pow_verification::{proof_of_work_is_valid};
+pub use crate::pow_verification::{proof_of_work_is_valid};

@@ -1,6 +1,7 @@
 [package]
 name = "xmr-pow-verification"
 version = "0.9.0"
+edition = "2018"
 authors = [
     "Piotr Włodarek <contact@eqertoip.com>"
 ]
