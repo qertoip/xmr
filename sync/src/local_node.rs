@@ -26,6 +26,7 @@ use synchronization_executor::LocalSynchronizationTaskExecutor;
 use synchronization_peers::PeersImpl;
 use types::{ClientRef, PeersRef, ExecutorRef, StorageRef, PeerIndex};
 
+#[allow(dead_code)]
 pub struct LocalNode {
     client: ClientRef,
     executor: ExecutorRef,

@@ -22,6 +22,7 @@ use p2p::types::cn::cmd::{NewBlock, NewFluffyBlock, NewTransactions, RequestChai
 
 use types::{PeersRef, PeerIndex, LocalNodeRef};
 
+#[allow(dead_code)]
 pub struct InboundConnection {
     peer_index: PeerIndex,
     peers: PeersRef,
