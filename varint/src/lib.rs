@@ -9,9 +9,6 @@
 //! # varint
 //! XZ variable length integers reading/writing
 
-extern crate bytes;
-extern crate num;
-
 use std::mem::size_of;
 
 use bytes::{BytesMut, Buf, BufMut};
