@@ -20,13 +20,13 @@ extern crate uuid;
 
 extern crate xmr_chain as chain;
 extern crate xmr_primitives as primitives;
-extern crate xmr_verification as verification;
+extern crate xmr_pow_verification as pow_verification;
 
 use chain::transaction::Transaction;
 use chain::{Block, BlockHeader};
 use uuid::Uuid;
 use primitives::H256;
-use verification::{proof_of_work_is_valid};
+use pow_verification::{proof_of_work_is_valid};
 
 pub const MAINNET_NETWORK_ID: [u8; 16] = [0x12, 0x30, 0xf1, 0x71, 0x61, 0x04, 0x41, 0x61, 0x17,
                                           0x31, 0x00, 0x82, 0x16, 0xa1, 0xa1, 0x10];

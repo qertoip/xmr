@@ -12,6 +12,6 @@
 extern crate lazy_static;
 extern crate uint;
 
-mod pow;
+mod pow_verification;
 
-pub use pow::{proof_of_work_is_valid};
+pub use pow_verification::{proof_of_work_is_valid};

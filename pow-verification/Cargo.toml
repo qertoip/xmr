@@ -1,5 +1,5 @@
 [package]
-name = "xmr-verification"
+name = "xmr-pow-verification"
 version = "0.9.0"
 authors = [
     "Piotr Włodarek <contact@eqertoip.com>"

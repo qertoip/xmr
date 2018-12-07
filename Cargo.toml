@@ -28,11 +28,11 @@ members = [
     "p2p",
     "portable-storage-utils",
     "portable-storage",
+    "pow-verification",
     "primitives",
     "storage",
     "sync",
     "varint",
-    "verification",
 ]
 
 [dependencies]
