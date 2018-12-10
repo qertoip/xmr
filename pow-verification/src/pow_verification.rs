@@ -1,11 +1,3 @@
-// Copyright 2018 Jean Pierre Dudey <jeandudey@hotmail.com>
-//
-// Licensed under the Apache License, Version 2.0 <LICENSE-APACHE or
-// http://www.apache.org/licenses/LICENSE-2.0> or the MIT license
-// <LICENSE-MIT or http://opensource.org/licenses/MIT>, at your
-// option. This file may not be copied, modified, or distributed
-// except according to those terms.
-
 use uint::U256;
 use uint::U512;
 
@@ -22,13 +14,9 @@ pub fn proof_of_work_is_valid(pow_bytes_le: &[u8], difficulty: u64) -> bool {
 
 #[cfg(test)]
 mod tests {
-    extern crate hex;
-    extern crate time;
-    extern crate rand;
-
     use super::*;
-    use self::rand::*;
-    use self::time::{PreciseTime, Duration};
+    use rand::*;
+    use time::{PreciseTime, Duration};
 
     #[test]
     fn mainnet_genesis_pow_is_valid()  /* https://xmrchain.net/block/0 */  {
@@ -52,9 +40,9 @@ mod tests {
 
     #[test]
     fn pow_precisely_at_target_is_valid() {
+        let difficulty = 51638511039;  // example difficulty - real world value for Nov 2018
         // target is a function of difficulty as defined in https://cryptonote.org/cns/cns010.txt
         // target = floor((2^256-1) / difficulty)
-        let difficulty = 51638511039;  // example difficulty - real world value for Nov 2018
         let target = U256::from_dec_str("2242359179370299570181822279337156699950563511941089607981823668320").expect("to be correct uns int");
         let pow = target;
         assert_valid_pow_u256(pow, difficulty);
@@ -62,9 +50,9 @@ mod tests {
 
     #[test]
     fn pow_at_target_plus_one_is_invalid() {
+        let difficulty = 51638511039;
         // target is a function of difficulty as defined in https://cryptonote.org/cns/cns010.txt
         // target = floor((2^256-1) / difficulty)
-        let difficulty = 51638511039;
         let target = U256::from_dec_str("2242359179370299570181822279337156699950563511941089607981823668320").expect("to be correct uns int");
         let pow = target + 1_u64;
         assert_invalid_pow_u256(pow, difficulty);
@@ -126,6 +114,6 @@ mod tests {
     }
 
     fn random_32_bytes() -> Vec<u8> {
-        (0..32).map(|_| { random::<u8>() }).collect()
+        thread_rng().gen::<[u8; 32]>().to_vec()
     }
 }
